@@ -1,0 +1,26 @@
+{
+  "name": "ousdal-it-tool-template",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "build:pages": "tsc --noEmit && vite build --base=./",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "check": "bash scripts/check-structure.sh"
+  },
+  "dependencies": {
+    "preact": "10.26.9"
+  },
+  "devDependencies": {
+    "@preact/preset-vite": "2.10.2",
+    "@testing-library/preact": "3.2.4",
+    "fake-indexeddb": "6.0.1",
+    "jsdom": "26.1.0",
+    "typescript": "5.8.3",
+    "vite": "6.3.5",
+    "vitest": "3.2.4"
+  }
+}

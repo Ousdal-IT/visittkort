@@ -1,0 +1,42 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Validate version
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          [[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "Tag must be vX.Y.Z"; exit 1; }
+          PACKAGE_VERSION="$(node -p "require('./package.json').version")"
+          [[ "$TAG" == "v$PACKAGE_VERSION" ]] || { echo "Tag $TAG does not match package.json v$PACKAGE_VERSION"; exit 1; }
+      - run: npm ci
+      - run: npm test
+      - run: npm run build:pages
+      - name: Package release
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          ARCHIVE="ousdal-it-tool-${TAG}.zip"
+          cd dist
+          zip -r "../$ARCHIVE" .
+          cd ..
+          sha256sum "$ARCHIVE" > "$ARCHIVE.sha256"
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            ousdal-it-tool-*.zip
+            ousdal-it-tool-*.zip.sha256
