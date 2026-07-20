@@ -8,12 +8,12 @@ afterEach(cleanup);
 
 describe('AppHeader', () => {
   it('uses the compact Ousdal IT mark without the retired SVG', () => {
-    render(<AppHeader appName="Eksempelverktøy" />);
+    render(<AppHeader appName="Visittkort" />);
     const logo = screen.getByRole('img', { name: 'Ousdal IT' });
 
     expect(logo.getAttribute('src')).toMatch(/brand\/ousdal-it-mark\.png$/);
     expect(logo.getAttribute('src')).not.toContain('ousdal-it-logo.svg');
-    expect(screen.getByText('Eksempelverktøy')).toBeTruthy();
+    expect(screen.getByText('Visittkort')).toBeTruthy();
     expect(screen.getByText('Et verktøy fra Ousdal IT')).toBeTruthy();
   });
 });

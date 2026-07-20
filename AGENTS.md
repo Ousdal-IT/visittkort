@@ -2,11 +2,28 @@
 
 ## Formål
 
-Dette repositoryet er grunnmalen for små Ousdal IT-verktøy.
+Dette repositoryet er Visittkort-appen.
 
-Endringer skal bevare malen som enkel, lokal-først, tilgjengelig, lett å tilpasse, uten backend, uten innlogging og uten unødvendige avhengigheter.
+Appens scope er:
 
-Malen skal bare inneholde funksjonalitet som er generell nok til å være nyttig i flere apper.
+- digitalt visittkort
+- lokal lagring
+- vCard
+- QR-kode
+- utskrift
+- enkel deling
+
+Ikke utvid scope til:
+
+- CRM
+- kontaktregister
+- skybasert synkronisering
+- brukerkontoer
+- backend
+- markedsføringsplattform
+- analyse eller sporing
+
+Endringer skal bevare appen som enkel, lokal-først og tilgjengelig, uten backend, innlogging eller unødvendige avhengigheter.
 
 ## Teknologistack
 
@@ -25,11 +42,7 @@ Ikke innfør uten eksplisitt beskjed: React, Next.js, Tailwind, Redux, Dexie, Wo
 
 ## Scope
 
-Dette er en grunnmal, ikke en konkret app. Ikke legg appspesifikk funksjonalitet i malen.
-
-QR-kodegenerering, vCard, ICS, bursdagslogikk, kontaktbok, WiFi-konfigurasjon og domenespesifikke import- eller eksportformater hører hjemme i repoene som opprettes fra malen.
-
-En ny generell funksjon bør normalt være nyttig i minst tre Ousdal IT-verktøy før den legges i malen.
+Hold funksjonaliteten innenfor Visittkort-scope. Ikke legg til tilgrensende produktfunksjoner uten eksplisitt beskjed.
 
 ## Enkelhet
 

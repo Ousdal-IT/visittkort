@@ -1,9 +1,13 @@
 # Endringslogg
 
-Alle vesentlige endringer i malen dokumenteres her.
+Alle vesentlige endringer i prosjektet dokumenteres her.
 
 ## [Unreleased]
 
+- Initialiserte Visittkort fra Ousdal IT Tool Template.
+- Oppdaterte prosjektmetadata for Visittkort.
+- Fjernet generisk demonstrasjonsinnhold fra malen.
+- Klargjorde repositoryet for første funksjonelle milepæl.
 - La til AGENTS.md med repositoryregler for kodeagenter.
 - La til Ousdal IT-fargeprofil og standard merkevarefooter.
 - La til en diskret Ko-fi-støttelenke.

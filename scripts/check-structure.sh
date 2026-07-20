@@ -21,9 +21,11 @@ required=(
   src/lib/storage.ts
   src/lib/validation.ts
   tests/download.test.ts
+  tests/App.test.tsx
   tests/AppFooter.test.tsx
   tests/AppHeader.test.tsx
   tests/manifest.test.ts
+  tests/package.test.ts
   tests/storage.test.ts
   tests/validation.test.ts
   README.md

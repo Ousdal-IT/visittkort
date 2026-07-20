@@ -1,28 +1,50 @@
-# Ousdal IT-verktøy
+# Visittkort
 
-Minimal standardmal for små Ousdal IT-verktøy, bygget med Preact, TypeScript og Vite. Malen inkluderer PWA-støtte, GitHub Pages, tester og små hjelpere for IndexedDB, validering og filnedlasting.
+Visittkort er en lokal-først PWA for å lage og dele digitale visittkort.
 
-Arbeidsregler for Codex og andre kodeagenter finnes i `AGENTS.md`.
+Planlagte hovedfunksjoner:
 
-## Profilering
+- kontaktinformasjon
+- direkte forhåndsvisning
+- lokal lagring
+- vCard
+- QR-kode
+- utskrift
 
-Alle apper basert på malen bruker som standard Ousdal IT-farger, den kompakte fjell-/elvemerkevarianten, merkevarelinjen «Ousdal IT – Lokal IT. Digital trygghet.» og en diskret Ko-fi-lenke i footeren. `AppHeader` og `AppFooter` kan gjenbrukes direkte; appnavnet sendes til headeren som en prop. Den komplette logoen ligger i `public/brand/` for flater der ordmerke og slagord kan vises lesbart.
+Funksjonene implementeres trinnvis. Første versjon er foreløpig bare prosjektgrunnlaget, uten visittkortfunksjonalitet.
 
 ## Utvikling
 
-Krev Node.js 20 eller nyere.
+Krever Node.js 20 eller nyere.
 
 ```sh
 npm ci
 npm run dev
 ```
 
-Bygg med `npm run build`, kjør tester med `npm test`, og kontroller repositorystrukturen med `npm run check`.
+## Tester
+
+```sh
+npm test
+npm run check
+```
+
+## Bygg
+
+```sh
+npm run build
+```
 
 ## GitHub Pages
 
-Workflowen `pages.yml` bygger og publiserer automatisk fra `main`. Aktiver **GitHub Actions** som Pages-kilde under repositoryets innstillinger. `npm run build:pages` lager lokalt samme relative build som workflowen bruker.
+Workflowen `pages.yml` bygger og publiserer automatisk fra `main`. GitHub Pages må bruke GitHub Actions som kilde. Lokal Pages-build:
 
-## Bruk som Template Repository
+```sh
+npm run build:pages
+```
 
-Aktiver **Template repository** under repositoryets innstillinger. Velg deretter **Use this template** for å opprette et nytt verktøy. Oppdater appnavn, versjon, tekster, manifest og cache-navnet i `public/sw.js` før publisering, men behold standardprofileringen.
+Publiseringsadressen er <https://ousdal-it.github.io/visittkort/>.
+
+## Lisens
+
+Se [LICENSE](LICENSE).

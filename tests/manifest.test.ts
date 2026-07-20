@@ -2,6 +2,14 @@ import { describe, expect, it } from 'vitest';
 import manifestSource from '../public/manifest.webmanifest?raw';
 
 describe('PWA manifest', () => {
+  it('uses the Visittkort identity', () => {
+    const manifest = JSON.parse(manifestSource) as { name: string; short_name: string; lang: string };
+
+    expect(manifest.name).toBe('Digitalt visittkort fra Ousdal IT');
+    expect(manifest.short_name).toBe('Visittkort');
+    expect(manifest.lang).toBe('nb');
+  });
+
   it('uses the new compact PNG icons', () => {
     const manifest = JSON.parse(manifestSource) as { icons: Array<{ src: string; sizes: string }> };
 

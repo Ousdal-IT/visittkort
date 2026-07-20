@@ -1,7 +1,7 @@
 {
-  "name": "Ousdal IT-verktøy",
-  "short_name": "Ousdal IT",
-  "description": "En mal for små verktøy fra Ousdal IT.",
+  "name": "Digitalt visittkort fra Ousdal IT",
+  "short_name": "Visittkort",
+  "description": "Lag og oppbevar et digitalt visittkort lokalt i nettleseren.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

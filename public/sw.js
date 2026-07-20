@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ousdal-it-tool-v3';
+const CACHE_NAME = 'visittkort-v1';
 const APP_ROOT = new URL('./', self.location.href);
 const PRECACHE_URLS = [
   new URL('./', APP_ROOT).href,
