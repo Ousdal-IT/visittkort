@@ -12,7 +12,7 @@
     "check": "bash scripts/check-structure.sh"
   },
   "dependencies": {
-    "preact": "10.26.9"
+    "preact": "10.29.7"
   },
   "devDependencies": {
     "@preact/preset-vite": "2.10.2",
@@ -20,7 +20,7 @@
     "fake-indexeddb": "6.0.1",
     "jsdom": "26.1.0",
     "typescript": "5.8.3",
-    "vite": "6.3.5",
-    "vitest": "3.2.4"
+    "vite": "6.4.3",
+    "vitest": "3.2.7"
   }
 }

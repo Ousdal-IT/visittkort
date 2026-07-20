@@ -17,13 +17,20 @@ required=(
   src/App.tsx
   src/components/AppFooter.tsx
   src/components/AppHeader.tsx
+  src/components/BusinessCardForm.tsx
+  src/components/BusinessCardPreview.tsx
   src/lib/download.ts
   src/lib/storage.ts
   src/lib/validation.ts
+  src/types/businessCard.ts
   tests/download.test.ts
   tests/App.test.tsx
   tests/AppFooter.test.tsx
   tests/AppHeader.test.tsx
+  tests/AppStorage.test.tsx
+  tests/BusinessCardForm.test.tsx
+  tests/BusinessCardPreview.test.tsx
+  tests/businessCard.test.ts
   tests/manifest.test.ts
   tests/package.test.ts
   tests/storage.test.ts

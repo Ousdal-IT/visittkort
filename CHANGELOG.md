@@ -4,6 +4,11 @@ Alle vesentlige endringer i prosjektet dokumenteres her.
 
 ## [Unreleased]
 
+- La til grunnleggende visittkortskjema for ett kort.
+- La til direkte forhåndsvisning med trygg håndtering av kontaktlenker.
+- La til automatisk, debouncet lagring og gjenoppretting med IndexedDB.
+- La til bekreftet nullstilling av lokalt lagrede opplysninger.
+- La til tester for datamodell, skjema, forhåndsvisning, lagring og nullstilling.
 - Initialiserte Visittkort fra Ousdal IT Tool Template.
 - Oppdaterte prosjektmetadata for Visittkort.
 - Fjernet generisk demonstrasjonsinnhold fra malen.

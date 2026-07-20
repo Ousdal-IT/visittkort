@@ -1,17 +1,22 @@
 # Visittkort
 
-Visittkort er en lokal-først PWA for å lage og dele digitale visittkort.
+Visittkort er en lokal-først PWA for å lage digitale visittkort.
 
-Planlagte hovedfunksjoner:
+M1 støtter:
 
-- kontaktinformasjon
+- ett visittkort
 - direkte forhåndsvisning
-- lokal lagring
+- automatisk lokal lagring
+- trygg nullstilling
+
+Planlagte funksjoner:
+
 - vCard
 - QR-kode
 - utskrift
+- deling
 
-Funksjonene implementeres trinnvis. Første versjon er foreløpig bare prosjektgrunnlaget, uten visittkortfunksjonalitet.
+Opplysningene lagres bare lokalt i nettleseren. Funksjonene implementeres trinnvis.
 
 ## Utvikling
 
