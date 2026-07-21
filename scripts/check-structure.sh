@@ -21,12 +21,15 @@ required=(
   src/components/BusinessCardPreview.tsx
   src/lib/download.ts
   src/lib/storage.ts
+  src/lib/url.ts
   src/lib/validation.ts
+  src/lib/vcard.ts
   src/types/businessCard.ts
   tests/download.test.ts
   tests/App.test.tsx
   tests/AppFooter.test.tsx
   tests/AppHeader.test.tsx
+  tests/AppExport.test.tsx
   tests/AppStorage.test.tsx
   tests/BusinessCardForm.test.tsx
   tests/BusinessCardPreview.test.tsx
@@ -34,7 +37,9 @@ required=(
   tests/manifest.test.ts
   tests/package.test.ts
   tests/storage.test.ts
+  tests/url.test.ts
   tests/validation.test.ts
+  tests/vcard.test.ts
   README.md
   CHANGELOG.md
   LICENSE

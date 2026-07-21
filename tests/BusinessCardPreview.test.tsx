@@ -34,10 +34,13 @@ describe('BusinessCardPreview', () => {
     expect(screen.getByRole('link', { name: 'example.no' }).getAttribute('href')).toBe('https://example.no/');
   });
 
-  it.each(['javascript:alert(1)', 'not a website'])('does not link an unsafe or invalid website: %s', (website) => {
+  it.each(['javascript:alert(1)', 'data:text/plain,test', 'file:///tmp/test', 'not a website'])(
+    'does not link an unsafe or invalid website: %s',
+    (website) => {
     render(<BusinessCardPreview data={{ ...EMPTY_BUSINESS_CARD, website }} />);
 
     expect(screen.getByText(website).tagName).toBe('SPAN');
     expect(screen.queryByRole('link', { name: website })).toBeNull();
-  });
+    },
+  );
 });

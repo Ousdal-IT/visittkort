@@ -1,19 +1,8 @@
 import type { BusinessCardData } from '../types/businessCard';
+import { normalizeHttpUrl } from '../lib/url';
 
 interface BusinessCardPreviewProps {
   data: BusinessCardData;
-}
-
-function safeWebsiteUrl(value: string): string | undefined {
-  const candidate = value.trim();
-  if (!candidate) return undefined;
-
-  try {
-    const url = new URL(candidate.includes('://') ? candidate : `https://${candidate}`);
-    return url.protocol === 'http:' || url.protocol === 'https:' ? url.href : undefined;
-  } catch {
-    return undefined;
-  }
 }
 
 export function BusinessCardPreview({ data }: BusinessCardPreviewProps) {
@@ -21,7 +10,7 @@ export function BusinessCardPreview({ data }: BusinessCardPreviewProps) {
     Object.entries(data).map(([key, value]) => [key, value.trim()]),
   ) as unknown as BusinessCardData;
   const isEmpty = Object.values(card).every((value) => value === '');
-  const websiteUrl = safeWebsiteUrl(card.website);
+  const websiteUrl = normalizeHttpUrl(card.website);
 
   return (
     <section class="preview-section" aria-labelledby="preview-title">

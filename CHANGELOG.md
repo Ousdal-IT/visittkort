@@ -4,6 +4,10 @@ Alle vesentlige endringer i prosjektet dokumenteres her.
 
 ## [Unreleased]
 
+- La til lokal eksport som en UTF-8-kodet vCard 4.0-fil.
+- La til trygg escaping av vCard-tekst og konsekvente CRLF-linjeskift.
+- La til trygge `.vcf`-filnavn basert på navnet i visittkortet.
+- La til tester for vCard-generering, URL-normalisering, filnavn og nedlasting.
 - La til grunnleggende visittkortskjema for ett kort.
 - La til direkte forhåndsvisning med trygg håndtering av kontaktlenker.
 - La til automatisk, debouncet lagring og gjenoppretting med IndexedDB.

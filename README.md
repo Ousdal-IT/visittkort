@@ -2,16 +2,16 @@
 
 Visittkort er en lokal-først PWA for å lage digitale visittkort.
 
-M1 støtter:
+Appen støtter:
 
 - ett visittkort
 - direkte forhåndsvisning
 - automatisk lokal lagring
 - trygg nullstilling
+- eksport som vCard 4.0
 
 Planlagte funksjoner:
 
-- vCard
 - QR-kode
 - utskrift
 - deling

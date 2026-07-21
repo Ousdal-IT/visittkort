@@ -3,25 +3,34 @@ import { AppFooter } from './components/AppFooter';
 import { AppHeader } from './components/AppHeader';
 import { BusinessCardForm } from './components/BusinessCardForm';
 import { BusinessCardPreview } from './components/BusinessCardPreview';
+import { downloadFile } from './lib/download';
 import { deleteValue, getValue, setValue } from './lib/storage';
+import { createVCard, createVCardFilename } from './lib/vcard';
 import { EMPTY_BUSINESS_CARD, normalizeBusinessCard, type BusinessCardData } from './types/businessCard';
 
 export const BUSINESS_CARD_STORAGE_KEY = 'visittkort:business-card';
 export const SAVE_DEBOUNCE_MS = 500;
 
-type StorageStatus = 'loading' | 'saving' | 'saved' | 'error' | 'reset';
+type StorageStatus = 'loading' | 'saving' | 'saved' | 'error';
+type ActionStatus = 'reset' | 'exported' | 'export-error';
 
 const statusMessages: Record<StorageStatus, string> = {
   loading: 'Laster inn …',
   saving: 'Endringer lagres …',
   saved: 'Lagret lokalt',
   error: 'Kunne ikke lagre endringene',
+};
+
+const actionStatusMessages: Record<ActionStatus, string> = {
   reset: 'Visittkortet er nullstilt',
+  exported: 'vCard-filen er lastet ned.',
+  'export-error': 'Kunne ikke lage vCard-filen.',
 };
 
 export function App() {
   const [data, setData] = useState<BusinessCardData>({ ...EMPTY_BUSINESS_CARD });
   const [status, setStatus] = useState<StorageStatus>('loading');
+  const [actionStatus, setActionStatus] = useState<ActionStatus>();
   const [isLoaded, setIsLoaded] = useState(false);
   const saveTimer = useRef<ReturnType<typeof setTimeout>>();
   const pendingSave = useRef<Promise<void>>(Promise.resolve());
@@ -51,6 +60,7 @@ export function App() {
   const updateField = (field: keyof BusinessCardData, value: string) => {
     const nextData = { ...data, [field]: value };
     setData(nextData);
+    setActionStatus(undefined);
     if (!isLoaded) return;
 
     setStatus('saving');
@@ -79,11 +89,31 @@ export function App() {
       await pendingSave.current.catch(() => undefined);
       await deleteValue(BUSINESS_CARD_STORAGE_KEY);
       setData({ ...EMPTY_BUSINESS_CARD });
-      setStatus('reset');
+      setStatus('saved');
+      setActionStatus('reset');
     } catch {
       setStatus('error');
     }
   };
+
+  const exportVCard = () => {
+    if (!data.fullName.trim()) return;
+
+    try {
+      downloadFile(createVCard(data), createVCardFilename(data.fullName), 'text/vcard;charset=utf-8');
+      if (status !== 'error') setActionStatus('exported');
+    } catch {
+      if (status !== 'error') setActionStatus('export-error');
+    }
+  };
+
+  const visibleStatus = status === 'error'
+    ? statusMessages.error
+    : actionStatus
+      ? actionStatusMessages[actionStatus]
+      : statusMessages[status];
+  const hasVisibleError = status === 'error' || actionStatus === 'export-error';
+  const canExport = data.fullName.trim().length > 0;
 
   return (
     <div class="page">
@@ -94,8 +124,8 @@ export function App() {
             <h1>Visittkort</h1>
             <p>Lag et digitalt visittkort som lagres lokalt på enheten din.</p>
           </header>
-          <p class={`storage-status storage-status--${status}`} aria-live="polite" role="status">
-            {statusMessages[status]}
+          <p class={`storage-status${hasVisibleError ? ' storage-status--error' : ''}`} aria-live="polite" role="status">
+            {visibleStatus}
           </p>
           <div class="workspace">
             <div>
@@ -104,7 +134,25 @@ export function App() {
                 Nullstill visittkortet
               </button>
             </div>
-            <BusinessCardPreview data={data} />
+            <div class="preview-column">
+              <BusinessCardPreview data={data} />
+              <div class="export-actions">
+                <button
+                  class="export-button"
+                  type="button"
+                  disabled={!canExport}
+                  aria-describedby={!canExport ? 'export-help' : undefined}
+                  onClick={exportVCard}
+                >
+                  Last ned som vCard
+                </button>
+                {!canExport && (
+                  <p id="export-help" class="export-help">
+                    Fyll inn navn før du laster ned vCard-filen.
+                  </p>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </main>
