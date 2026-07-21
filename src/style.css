@@ -48,7 +48,7 @@ h1 { margin: 0; color: var(--color-brand-dark); font-size: clamp(2rem, 7vw, 3.4r
 .storage-status--error::before { content: "Feil: "; }
 .workspace { display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, .9fr); gap: clamp(1.5rem, 4vw, 3rem); align-items: start; }
 .business-card-form, .preview-column, .preview-section { min-width: 0; }
-.business-card-form h2, .preview-section h2 { margin: 0 0 1rem; color: var(--color-brand-dark); font-size: 1.35rem; }
+.business-card-form h2, .preview-section h2, .qr-section h2 { margin: 0 0 1rem; color: var(--color-brand-dark); font-size: 1.35rem; }
 .form-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
 .form-field { min-width: 0; }
 .form-field:has(textarea) { grid-column: 1 / -1; }
@@ -66,7 +66,7 @@ input, textarea {
 textarea { min-height: 86px; resize: vertical; }
 input:focus-visible, textarea:focus-visible { border-color: var(--color-brand-blue); outline: 4px solid rgb(24 128 216 / 25%); outline-offset: 1px; }
 button:focus-visible, a:focus-visible { outline: 4px solid var(--color-focus); outline-offset: 3px; }
-.export-button, .reset-button {
+.export-button, .download-qr-button, .reset-button {
   width: 100%;
   min-height: 52px;
   padding: .7rem 1rem;
@@ -74,15 +74,27 @@ button:focus-visible, a:focus-visible { outline: 4px solid var(--color-focus); o
   cursor: pointer;
   font-weight: 750;
 }
-.export-button {
+.export-button, .download-qr-button {
   border: 2px solid var(--color-brand-dark);
   color: #ffffff;
   background: var(--color-brand-dark);
 }
-.export-button:hover:not(:disabled) { border-color: var(--color-brand-darker); background: var(--color-brand-darker); }
-.export-button:disabled { border-color: var(--color-border); color: var(--color-text-muted); background: #edf1f5; cursor: not-allowed; }
+.export-button:hover:not(:disabled), .download-qr-button:hover:not(:disabled) { border-color: var(--color-brand-darker); background: var(--color-brand-darker); }
+.export-button:disabled, .download-qr-button:disabled { border-color: var(--color-border); color: var(--color-text-muted); background: #edf1f5; cursor: not-allowed; }
 .export-actions { margin-top: 1rem; }
 .export-help { margin: .55rem 0 0; color: var(--color-text-muted); font-size: .9rem; line-height: 1.45; }
+.qr-section { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--color-border); }
+.qr-section > p { color: var(--color-text-muted); line-height: 1.5; }
+.qr-help { font-weight: 700; }
+.qr-code {
+  width: min(100%, 300px);
+  margin: 1rem auto;
+  padding: .65rem;
+  border: 1px solid var(--color-border);
+  background: #ffffff;
+}
+.qr-code svg { display: block; width: 100%; height: auto; }
+.qr-privacy { margin: .8rem 0 0; font-size: .85rem; }
 .reset-button {
   margin-top: 1.5rem;
   border: 2px solid #9b1c1c;
@@ -150,5 +162,5 @@ button:focus-visible, a:focus-visible { outline: 4px solid var(--color-focus); o
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  a, .export-button, .reset-button { transition: color .15s ease, background-color .15s ease; }
+  a, .export-button, .download-qr-button, .reset-button { transition: color .15s ease, background-color .15s ease; }
 }

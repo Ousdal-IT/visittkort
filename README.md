@@ -9,10 +9,11 @@ Appen støtter:
 - automatisk lokal lagring
 - trygg nullstilling
 - eksport som vCard 4.0
+- QR-kode fra de samme vCard-dataene
+- lokal nedlasting av QR-koden som SVG
 
 Planlagte funksjoner:
 
-- QR-kode
 - utskrift
 - deling
 

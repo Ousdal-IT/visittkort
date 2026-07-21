@@ -19,7 +19,9 @@ required=(
   src/components/AppHeader.tsx
   src/components/BusinessCardForm.tsx
   src/components/BusinessCardPreview.tsx
+  src/components/BusinessCardQrCode.tsx
   src/lib/download.ts
+  src/lib/qrcode.ts
   src/lib/storage.ts
   src/lib/url.ts
   src/lib/validation.ts
@@ -30,12 +32,15 @@ required=(
   tests/AppFooter.test.tsx
   tests/AppHeader.test.tsx
   tests/AppExport.test.tsx
+  tests/AppQrStatus.test.tsx
   tests/AppStorage.test.tsx
   tests/BusinessCardForm.test.tsx
   tests/BusinessCardPreview.test.tsx
+  tests/BusinessCardQrCode.test.tsx
   tests/businessCard.test.ts
   tests/manifest.test.ts
   tests/package.test.ts
+  tests/qrcode.test.ts
   tests/storage.test.ts
   tests/url.test.ts
   tests/validation.test.ts

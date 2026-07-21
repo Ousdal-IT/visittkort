@@ -3,6 +3,7 @@ import { AppFooter } from './components/AppFooter';
 import { AppHeader } from './components/AppHeader';
 import { BusinessCardForm } from './components/BusinessCardForm';
 import { BusinessCardPreview } from './components/BusinessCardPreview';
+import { BusinessCardQrCode, type QrCodeStatus } from './components/BusinessCardQrCode';
 import { downloadFile } from './lib/download';
 import { deleteValue, getValue, setValue } from './lib/storage';
 import { createVCard, createVCardFilename } from './lib/vcard';
@@ -12,7 +13,7 @@ export const BUSINESS_CARD_STORAGE_KEY = 'visittkort:business-card';
 export const SAVE_DEBOUNCE_MS = 500;
 
 type StorageStatus = 'loading' | 'saving' | 'saved' | 'error';
-type ActionStatus = 'reset' | 'exported' | 'export-error';
+type ActionStatus = 'reset' | 'exported' | 'export-error' | QrCodeStatus;
 
 const statusMessages: Record<StorageStatus, string> = {
   loading: 'Laster inn …',
@@ -25,6 +26,9 @@ const actionStatusMessages: Record<ActionStatus, string> = {
   reset: 'Visittkortet er nullstilt',
   exported: 'vCard-filen er lastet ned.',
   'export-error': 'Kunne ikke lage vCard-filen.',
+  'qr-downloaded': 'QR-koden er lastet ned.',
+  'qr-error': 'Kunne ikke lage QR-koden.',
+  'qr-too-large': 'Visittkortet inneholder for mye tekst til å lage en QR-kode. Kort ned adresse eller slagord.',
 };
 
 export function App() {
@@ -107,12 +111,19 @@ export function App() {
     }
   };
 
+  const updateQrStatus = (qrStatus: QrCodeStatus | undefined) => {
+    if (status !== 'error') setActionStatus(qrStatus);
+  };
+
   const visibleStatus = status === 'error'
     ? statusMessages.error
     : actionStatus
       ? actionStatusMessages[actionStatus]
       : statusMessages[status];
-  const hasVisibleError = status === 'error' || actionStatus === 'export-error';
+  const hasVisibleError = status === 'error'
+    || actionStatus === 'export-error'
+    || actionStatus === 'qr-error'
+    || actionStatus === 'qr-too-large';
   const canExport = data.fullName.trim().length > 0;
 
   return (
@@ -152,6 +163,7 @@ export function App() {
                   </p>
                 )}
               </div>
+              <BusinessCardQrCode data={data} onStatus={updateQrStatus} />
             </div>
           </div>
         </div>

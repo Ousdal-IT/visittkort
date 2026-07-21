@@ -4,6 +4,11 @@ Alle vesentlige endringer i prosjektet dokumenteres her.
 
 ## [Unreleased]
 
+- La til lokal QR-generering basert på den eksisterende vCard-generatoren.
+- La til nedlasting av QR-koden som en selvstendig SVG-fil.
+- La til håndtering av for store datamengder uten automatisk forkorting.
+- La til personverntekst, tilgjengelig QR-navn og forklaring av deaktivert handling.
+- La til tester for QR-data, oppdatering, kapasitet, feil og nedlasting.
 - La til lokal eksport som en UTF-8-kodet vCard 4.0-fil.
 - La til trygg escaping av vCard-tekst og konsekvente CRLF-linjeskift.
 - La til trygge `.vcf`-filnavn basert på navnet i visittkortet.
